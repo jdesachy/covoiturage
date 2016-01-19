@@ -1,0 +1,38 @@
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+
+.col_cal {
+	width: 25%;
+	float: left;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.body-center{
+	text-align: center;
+}
+
+.current{
+	background-color: #D6E9C6;	
+}
+
+.link{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.link-right{
+	float: right !important;
+}
+.link-left{
+	float: left;
+}
+.link-right a{
+	text-decoration: none;
+	color: #FFF;
+}
+.link-left a{
+	text-decoration: none;
+}
