@@ -19,8 +19,7 @@ public class RequestReader {
 		String dayString = name.replaceFirst("tarif_", "");
 		Jour jour = new Jour();
 		jour.setDay(buildCal(dayString));
-		jour.setAller(TarifName.valueOf(value));
-		jour.setRetour(TarifName.valueOf(value));
+		jour.setAller(value);
 		return jour;
 	}
 

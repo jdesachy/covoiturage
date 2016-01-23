@@ -52,4 +52,8 @@ public class TarifsDao {
 	public void close() {
 		mongoClient.close();
 	}
+	
+	public void drop(){
+		database.getCollection("tarifs").drop();
+	}
 }

@@ -8,7 +8,7 @@ public class CalendrierJspHelper {
 
 	public String getSelected(Jour j, String tarif) {
 		String selected = "";
-		if (j.getAller().name().equals(tarif)) {
+		if (j.getAller().equals(tarif)) {
 			selected = "selected";
 		}
 		return selected;

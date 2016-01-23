@@ -10,7 +10,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 
-import covoiturage.TarifName;
 import covoiturage.calendrier.Jour;
 
 public class DaysDao {
@@ -24,8 +23,7 @@ public class DaysDao {
 	}
 
 	public void insert(Jour jour) {
-		Document doc = new Document().append("name", buildId(jour.getDay())).append("matin", jour.getAller().name())
-				.append("soir", jour.getRetour().name());
+		Document doc = new Document().append("name", buildId(jour.getDay())).append("matin", jour.getAller());
 		database.getCollection("days").insertOne(doc);
 	}
 
@@ -37,11 +35,9 @@ public class DaysDao {
 		Document first = doc.first();
 		Jour day = initDay(cal, first);
 		if (first != null) {
-			day.setAller(TarifName.valueOf(first.getString("matin")));
-			day.setRetour(TarifName.valueOf(first.getString("soir")));
+			day.setAller(first.getString("matin"));
 		} else {
-			day.setAller(TarifName.AUCUN);
-			day.setRetour(TarifName.AUCUN);
+			day.setAller("-");
 		}
 		return day;
 	}
@@ -49,7 +45,7 @@ public class DaysDao {
 	public long update(Jour jour) {
 		MongoCollection<Document> daysCollection = database.getCollection("days");
 		String id = buildId(jour.getDay());
-		Document document = new Document("matin", jour.getAller().name());
+		Document document = new Document("matin", jour.getAller());
 		UpdateResult res = daysCollection.updateOne(com.mongodb.client.model.Filters.eq("name", id),
 				new Document("$set", document));
 
@@ -63,8 +59,7 @@ public class DaysDao {
 	private Jour initDay(Calendar cal, Document first) {
 		Jour day = new Jour();
 		day.setDay(cal);
-		day.setAller(TarifName.AUCUN);
-		day.setRetour(TarifName.AUCUN);
+		day.setAller("-");
 		return day;
 	}
 

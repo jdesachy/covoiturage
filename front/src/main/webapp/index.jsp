@@ -98,9 +98,13 @@
 				            <li class="list-group-item <%=j.isCurrent()?"current":"" %>">
 				            <h4><span class="label label-default"><%=j.toString() %></span></h4>
 				            	<select name="tarif_<%=helper.getId(j) %>">
-				            		<option value="PLEIN" <%=helper.getSelected(j, "PLEIN")%> >JD/JB 100%</option>
-				            		<option value="REDUC" <%=helper.getSelected(j, "REDUC")%>>JD/JB 75%</option>
-				            		<option value="AUCUN" <%=helper.getSelected(j, "AUCUN")%>>-</option>
+				            		<% 
+				            		for( Tarification t : tarifs ){
+				            			%>
+				            			<option value="<%=t.getName() %>" <%=helper.getSelected(j, t.getName())%> ><%=t.getName() %></option>
+				            			<%
+				            		}
+				            		%>
 				            	</select>
 				            </li>
 					<%	

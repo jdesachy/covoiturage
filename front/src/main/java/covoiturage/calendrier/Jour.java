@@ -4,28 +4,17 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import covoiturage.TarifName;
-
 public class Jour implements Comparable<Jour> {
 
-	private TarifName aller;
-	private TarifName retour;
+	private String tarif;
 	private Calendar day;
 
-	public TarifName getAller() {
-		return aller;
+	public String getAller() {
+		return tarif;
 	}
 
-	public void setAller(TarifName aller) {
-		this.aller = aller;
-	}
-
-	public TarifName getRetour() {
-		return retour;
-	}
-
-	public void setRetour(TarifName retour) {
-		this.retour = retour;
+	public void setAller(String tarif) {
+		this.tarif = tarif;
 	}
 
 	public Calendar getDay() {

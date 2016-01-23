@@ -5,9 +5,14 @@ import org.junit.Test;
 public class TarifsDaoTest {
 
 	@Test
+	public void testDrop(){
+		new TarifsDao().drop();
+	}
+	
+	@Test
 	public void test() {
 		TarifsDao dao = new TarifsDao();
-		dao.delete("test");
+		dao.delete("AUCUN");
 
 //		dao.insert(new Tarification("PLEIN", 8.69));
 
