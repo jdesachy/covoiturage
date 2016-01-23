@@ -16,9 +16,19 @@
 		<servlet-class>covoiturage.UpdateServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>settings</servlet-name>
+		<servlet-class>covoiturage.SettingsServlet</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>voiture</servlet-name>
 		<url-pattern>/voiture</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>settings</servlet-name>
+		<url-pattern>/settings</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>

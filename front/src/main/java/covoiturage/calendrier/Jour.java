@@ -1,28 +1,30 @@
 package covoiturage.calendrier;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
-import covoiturage.Tarif;
+import covoiturage.TarifName;
 
 public class Jour implements Comparable<Jour> {
 
-	private Tarif aller;
-	private Tarif retour;
+	private TarifName aller;
+	private TarifName retour;
 	private Calendar day;
 
-	public Tarif getAller() {
+	public TarifName getAller() {
 		return aller;
 	}
 
-	public void setAller(Tarif aller) {
+	public void setAller(TarifName aller) {
 		this.aller = aller;
 	}
 
-	public Tarif getRetour() {
+	public TarifName getRetour() {
 		return retour;
 	}
 
-	public void setRetour(Tarif retour) {
+	public void setRetour(TarifName retour) {
 		this.retour = retour;
 	}
 
@@ -49,16 +51,11 @@ public class Jour implements Comparable<Jour> {
 		return actualDay == day.get(Calendar.DAY_OF_MONTH);
 	}
 
+	private SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMM yyyy", Locale.FRANCE);
+
 	@Override
 	public String toString() {
-		String mois = String.valueOf(day.get(Calendar.MONTH) + 1);
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(day.get(Calendar.DAY_OF_MONTH));
-		stringBuilder.append("/");
-		stringBuilder.append(mois);
-		stringBuilder.append("/");
-		stringBuilder.append(day.get(Calendar.YEAR));
-		return stringBuilder.toString();
+		return format.format(day.getTime());
 	}
 
 	@Override

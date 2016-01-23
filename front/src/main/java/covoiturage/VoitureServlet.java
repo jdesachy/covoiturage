@@ -2,6 +2,7 @@ package covoiturage;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import covoiturage.calendrier.Calendrier;
 import covoiturage.calendrier.CalendrierBuilder;
+import covoiturage.db.Tarification;
+import covoiturage.db.TarifsDao;
 
 public class VoitureServlet extends HttpServlet {
 
@@ -22,13 +25,19 @@ public class VoitureServlet extends HttpServlet {
 		Calendar cal = Calendar.getInstance();
 		CalendrierBuilder builder = new CalendrierBuilder();
 
-		int week = getWeek(req, cal);
-		Calendrier calendrier = builder.build(week, cal.get(Calendar.YEAR));
-		CalendrierJspHelper helper = new CalendrierJspHelper();
+		TarifsDao dao = new TarifsDao();
+		List<Tarification> tarifs = dao.getTarifs();
+		req.setAttribute("tarifs", tarifs);
+		dao.close();
 		
-		req.setAttribute("calendrier", calendrier);
-		req.setAttribute("helper", helper);
+		int week = getWeek(req, cal);
 		req.setAttribute("week", week);
+
+		Calendrier calendrier = builder.build(week, cal.get(Calendar.YEAR));
+		req.setAttribute("calendrier", calendrier);
+
+		CalendrierJspHelper helper = new CalendrierJspHelper();
+		req.setAttribute("helper", helper);
 		
 		calendrier.toString();
 		String nextJSP = "/index.jsp";

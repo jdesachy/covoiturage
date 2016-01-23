@@ -1,6 +1,6 @@
 package covoiturage;
 
-public enum Tarif {
+public enum TarifName {
 
 	PLEIN, REDUC, AUCUN;
 }

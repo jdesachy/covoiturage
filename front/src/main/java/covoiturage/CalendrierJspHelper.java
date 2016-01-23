@@ -6,6 +6,14 @@ import covoiturage.calendrier.Jour;
 
 public class CalendrierJspHelper {
 
+	public String getSelected(Jour j, String tarif) {
+		String selected = "";
+		if (j.getAller().name().equals(tarif)) {
+			selected = "selected";
+		}
+		return selected;
+	}
+
 	public String getId(Jour cal) {
 		StringBuilder id = new StringBuilder();
 		id.append(cal.getDay().get(Calendar.DAY_OF_MONTH));

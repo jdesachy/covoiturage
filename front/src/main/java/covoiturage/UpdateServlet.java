@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import covoiturage.calendrier.Jour;
+import covoiturage.db.DaysDao;
 
 public class UpdateServlet extends HttpServlet {
 
@@ -18,9 +19,12 @@ public class UpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String json = extractRequest(req);
-		
+
 		RequestReader requestReader = new RequestReader();
 		Jour jour = requestReader.read(json);
+		DaysDao dao = new DaysDao();
+		dao.update(jour);
+		dao.close();
 	}
 
 	private String extractRequest(HttpServletRequest req) throws IOException {

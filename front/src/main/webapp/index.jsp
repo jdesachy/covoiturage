@@ -1,3 +1,4 @@
+<%@page import="covoiturage.db.Tarification"%>
 <%@page import="covoiturage.CalendrierJspHelper"%>
 <%@ page language="java" isErrorPage="true"
 	contentType="text/html; 
@@ -60,11 +61,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Calendrier</a></li>
+            <li class="active"><a href="/voiture">Calendrier</a></li>
             <li><a href="#about">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          	<li><a href="#">Configuration</a></li>
+          	<li><a href="/settings">Configuration</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -73,6 +74,7 @@
 	<div class="container">
 		<%
 		Integer week = (Integer)request.getAttribute("week");
+		List<Tarification> tarifs = (List<Tarification>)request.getAttribute("tarifs");
 		%>
 		<div class="link">
 			<a href="<%=request.getContextPath() %>?week=<%=week-1%>"><button type="button" class="btn btn-xs btn-primary link-left">Précédent</button></a>
@@ -96,9 +98,9 @@
 				            <li class="list-group-item <%=j.isCurrent()?"current":"" %>">
 				            <h4><span class="label label-default"><%=j.toString() %></span></h4>
 				            	<select name="tarif_<%=helper.getId(j) %>">
-				            		<option value="PLEIN">JD/JB 100%</option>
-				            		<option value="REDUC">JD/JB 75%</option>
-				            		<option value="AUCUN">-</option>
+				            		<option value="PLEIN" <%=helper.getSelected(j, "PLEIN")%> >JD/JB 100%</option>
+				            		<option value="REDUC" <%=helper.getSelected(j, "REDUC")%>>JD/JB 75%</option>
+				            		<option value="AUCUN" <%=helper.getSelected(j, "AUCUN")%>>-</option>
 				            	</select>
 				            </li>
 					<%	
