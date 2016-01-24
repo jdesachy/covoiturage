@@ -19,12 +19,10 @@ public class UpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String json = extractRequest(req);
-		System.out.println("**************** " + json);
 		
 		RequestReader requestReader = new RequestReader();
 		Jour jour = requestReader.read(json);
 		DaysDao dao = new DaysDao();
-		System.out.println("**************** Jour : " + jour.getAller());
 		dao.update(jour);
 		dao.close();
 	}

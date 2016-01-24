@@ -2,9 +2,12 @@ package covoiturage.calendrier;
 
 import java.util.List;
 
+import covoiturage.db.Tarification;
+
 public class Calendrier {
 
 	private List<Semaine> semaines;
+	private Double amount = 0.0;
 
 	public List<Semaine> getSemaines() {
 		return semaines;
@@ -24,4 +27,19 @@ public class Calendrier {
 		return display.toString();
 	}
 
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public double getTarif(List<Tarification> tarifs, int month) {
+		double res = 0.0;
+		for (Semaine semaine : semaines) {
+			res += semaine.getTarif(tarifs, month);
+		}
+		return res;
+	}
 }

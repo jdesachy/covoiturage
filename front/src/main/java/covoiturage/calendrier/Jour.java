@@ -2,7 +2,10 @@ package covoiturage.calendrier;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+
+import covoiturage.db.Tarification;
 
 public class Jour implements Comparable<Jour> {
 
@@ -38,6 +41,16 @@ public class Jour implements Comparable<Jour> {
 
 	private boolean isSameDay(int actualDay) {
 		return actualDay == day.get(Calendar.DAY_OF_MONTH);
+	}
+
+	public double getTarif(List<Tarification> tarifs) {
+		double res = 0.0;
+		for (Tarification tarification : tarifs) {
+			if (tarification.getName().equals(this.tarif)) {
+				res = tarification.getAmount();
+			}
+		}
+		return res;
 	}
 
 	private SimpleDateFormat format = new SimpleDateFormat("EEEE dd MMM yyyy", Locale.FRANCE);

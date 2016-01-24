@@ -62,10 +62,10 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/voiture">Calendrier</a></li>
-            <li><a href="#about">About</a></li>
+          	<li><a href="/settings">Configuration</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          	<li><a href="/settings">Configuration</a></li>
+            <li><a href="#about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -73,12 +73,22 @@
 
 	<div class="container">
 		<%
-		Integer week = (Integer)request.getAttribute("week");
 		List<Tarification> tarifs = (List<Tarification>)request.getAttribute("tarifs");
 		%>
+		<div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><center><%=request.getAttribute("month") %></center></h3>
+            </div>
+            <div class="panel-body">
+            	<center>
+            		<%=(Double)request.getAttribute("total") %> €
+					<a href="/voiture">actualiser</a>
+				</center>
+            </div>
+         </div>
 		<div class="link">
-			<a href="<%=request.getContextPath() %>?week=<%=week-1%>"><button type="button" class="btn btn-xs btn-primary link-left">Précédent</button></a>
-			<a href="<%=request.getContextPath() %>?week=<%=week+1%>"><button type="button" class="btn btn-xs btn-primary link-right">Suivant</button></a>
+			<a href="<%=request.getContextPath() %>?month=<%=-1%>"><button type="button" class="btn btn-xs btn-primary link-left">Précédent</button></a>
+			<a href="<%=request.getContextPath() %>?month=<%=+1%>"><button type="button" class="btn btn-xs btn-primary link-right">Suivant</button></a>
 			&nbsp;
 		</div>
 		<div style="clear: both"></div>
@@ -86,7 +96,7 @@
 		<% List<Semaine> semaines = cal.getSemaines(); 
 			for( Semaine s : semaines ){
 			%>
-			<div class="col_cal">
+			<div class="col col_cal_<%=semaines.size() %>">
 				<div class="panel panel-default">
 	            	<div class="panel-heading">
 	              		<h3 class="panel-title">Semaine <%=s.getSemaine() %></h3>

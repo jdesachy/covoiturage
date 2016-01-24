@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import covoiturage.db.Tarification;
+
 public class Semaine {
 
 	private List<Jour> jours = new ArrayList<>();
@@ -58,21 +60,14 @@ public class Semaine {
 		this.annee = annee;
 	}
 
-	public Semaine previous() {
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.WEEK_OF_YEAR, semaine);
-		cal.set(Calendar.YEAR, annee);
-
-		cal.add(Calendar.WEEK_OF_YEAR, -1);
-		return new Semaine(cal.get(Calendar.WEEK_OF_YEAR), cal.get(Calendar.YEAR));
+	public double getTarif(List<Tarification> tarifs, int month) {
+		double res = 0.0;
+		for (Jour jour : jours) {
+			if (jour.getDay().get(Calendar.MONTH) == month) {
+				res += jour.getTarif(tarifs);
+			}
+		}
+		return res;
 	}
 
-	public Semaine next() {
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.WEEK_OF_YEAR, semaine);
-		cal.set(Calendar.YEAR, annee);
-
-		cal.add(Calendar.WEEK_OF_YEAR, 1);
-		return new Semaine(cal.get(Calendar.WEEK_OF_YEAR), cal.get(Calendar.YEAR));
-	}
 }

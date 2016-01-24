@@ -39,11 +39,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/voiture">Calendrier</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="/voiture">Calendrier</a></li>
+          	<li class="active"><a href="/settings">Configuration</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          	<li><a href="/settings">Configuration</a></li>
+            <li><a href="#about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

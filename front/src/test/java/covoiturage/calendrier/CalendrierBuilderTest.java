@@ -24,6 +24,13 @@ public class CalendrierBuilderTest {
 	}
 
 	@Test
+	public void testBuildCalendrierFromMonth() {
+		CalendrierBuilder builder = new CalendrierBuilder();
+		Calendrier calendrier = builder.build(0, 2016);
+		System.out.println(calendrier);
+	}
+
+	@Test
 	public void testBuild() {
 		CalendrierBuilder builder = new CalendrierBuilder();
 		Calendrier calendrier = builder.build(1, 2016);
