@@ -1,5 +1,7 @@
 package covoiturage.calendrier;
 
+import java.util.Calendar;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,14 +28,8 @@ public class CalendrierBuilderTest {
 	@Test
 	public void testBuildCalendrierFromMonth() {
 		CalendrierBuilder builder = new CalendrierBuilder();
-		Calendrier calendrier = builder.build(0, 2016);
+		Calendrier calendrier = builder.build(Calendar.getInstance());
 		System.out.println(calendrier);
 	}
 
-	@Test
-	public void testBuild() {
-		CalendrierBuilder builder = new CalendrierBuilder();
-		Calendrier calendrier = builder.build(1, 2016);
-		System.out.println(calendrier);
-	}
 }

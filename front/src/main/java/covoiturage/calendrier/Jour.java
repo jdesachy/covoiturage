@@ -35,6 +35,10 @@ public class Jour implements Comparable<Jour> {
 		return isSameDay(actualDay) && isSameMonth(actualMonth);
 	}
 
+	public boolean isActif(int month) {
+		return isSameMonth(month);
+	}
+
 	private boolean isSameMonth(int actualMonth) {
 		return actualMonth == day.get(Calendar.MONTH);
 	}

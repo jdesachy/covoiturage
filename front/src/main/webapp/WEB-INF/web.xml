@@ -21,6 +21,16 @@
 		<servlet-class>covoiturage.SettingsServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>about</servlet-name>
+		<servlet-class>covoiturage.AboutServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>about</servlet-name>
+		<url-pattern>/about</url-pattern>
+	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>voiture</servlet-name>
 		<url-pattern>/voiture</url-pattern>

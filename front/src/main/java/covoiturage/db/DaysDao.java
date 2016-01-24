@@ -58,7 +58,9 @@ public class DaysDao {
 
 	private Jour initDay(Calendar cal, Document first) {
 		Jour day = new Jour();
-		day.setDay(cal);
+		Calendar newCal = Calendar.getInstance();
+		newCal.setTime(cal.getTime());
+		day.setDay(newCal);
 		day.setAller("-");
 		return day;
 	}

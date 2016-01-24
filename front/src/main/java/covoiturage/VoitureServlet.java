@@ -33,15 +33,16 @@ public class VoitureServlet extends HttpServlet {
 		dao.close();
 
 		int month = getMonth(req);
-		CalendrierPrinter.show("doGet", cal);
-		Calendrier calendrier = builder.build(month, cal.get(Calendar.YEAR));
+		req.setAttribute("actualMonth", month);
+		
+		String formattedMonth = dateFormat.format(cal.getTime());
+		req.setAttribute("month", formattedMonth);
+
+		Calendrier calendrier = builder.build(cal);
 		req.setAttribute("calendrier", calendrier);
 
 		double total = calendrier.getTarif(tarifs, month);
 		req.setAttribute("total", total);
-
-		String formattedMonth = dateFormat.format(cal.getTime());
-		req.setAttribute("month", formattedMonth);
 
 		CalendrierJspHelper helper = new CalendrierJspHelper();
 		req.setAttribute("helper", helper);

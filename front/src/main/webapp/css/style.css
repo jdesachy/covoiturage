@@ -42,3 +42,7 @@ body {
 .link-left a{
 	text-decoration: none;
 }
+
+.opt-ok {
+	background-color: #D6E9C6;
+}

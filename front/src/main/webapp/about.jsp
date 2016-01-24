@@ -17,15 +17,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	   
-	<script language="Javascript" type="text/javascript">
-		function add(){
-			document.getElementById("formTarif").submit();
-		}
-	</script> 
 </head>
 <body>
-	<% List<Tarification> tarifs = (List<Tarification>)request.getAttribute("tarifs"); %>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -40,86 +33,21 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/voiture">Calendrier</a></li>
-          	<li class="active"><a href="/settings">Configuration</a></li>
+          	<li><a href="/settings">Configuration</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/about">About</a></li>
+            <li class="active"><a href="/about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
 	<div class="container">
-		<form action="/settings" method="post" id="formTarif">
-			<div class="panel panel-default">
-	            <div class="panel-heading">
-	              <h3 class="panel-title">Ajout d'un tarif</h3>
-	            </div>
-	            <div class="panel-body">
-					<div class="row">	
-						<div class="col-sm-4">
-							Nom
-						</div>
-						<div class="col-sm-4">
-							Montant
-						</div>
-						<div class="col-sm-4">
-							&nbsp;
-						</div>
-					</div>
-					<div class="row">	
-						<div class="col-sm-4">
-							<input name="name" type="text"></input>
-						</div>
-						<div class="col-sm-4">
-							<input name="value" type="text"></input>
-						</div>
-						<div class="col-sm-4">
-							<button class="btn btn-xs btn-primary" type="button" onclick="javascript:add();">Ajouter</button>
-						</div>
-					</div>
-	            </div>
-	       	</div>
-
-			<div class="panel panel-default">
-	            <div class="panel-heading">
-	              <h3 class="panel-title">Tarifs existant</h3>
-	            </div>
-	            <div class="panel-body">
-					<div class="row">	
-						<div class="col-sm-4">
-							Nom
-						</div>
-						<div class="col-sm-4">
-							Montant
-						</div>
-						<div class="col-sm-4">
-							&nbsp;
-						</div>
-					</div>
-
-			<%
-			if( tarifs != null ){
-				for( Tarification t : tarifs ){
-					%>
-					<div class="row">	
-						<div class="col-sm-4">
-							<%= t.getName() %>
-						</div>
-						<div class="col-sm-4">
-							<%= t.getAmount() %>
-						</div>
-						<div class="col-sm-4">
-							&nbsp;
-						</div>
-					</div>
-					<%
-				}
-			}
-			%>
-	            </div>
-	       	</div>			
-		</form>
+		<div class="well">
+        <p>Date: 24/01/2016</p>
+        <p>Plateforme: Jetty, Mongodb, Bootstrap</p>
+        <p>Développeur: Jérôme Desachy</p>
+      </div>
 	</div>
       
 	<script src="bootstrap/js/bootstrap.min.js"></script>

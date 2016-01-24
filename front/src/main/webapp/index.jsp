@@ -65,7 +65,7 @@
           	<li><a href="/settings">Configuration</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#about">About</a></li>
+            <li><a href="/about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -74,14 +74,15 @@
 	<div class="container">
 		<%
 		List<Tarification> tarifs = (List<Tarification>)request.getAttribute("tarifs");
+		int actualMonth = (Integer)request.getAttribute("actualMonth");
 		%>
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title"><center><%=request.getAttribute("month") %></center></h3>
             </div>
             <div class="panel-body">
             	<center>
-            		<%=(Double)request.getAttribute("total") %> €
+            		<%=(Double)request.getAttribute("total") %> &euro;
 					<a href="/voiture">actualiser</a>
 				</center>
             </div>
@@ -106,8 +107,12 @@
 			<% 	for( Jour j : s.getJours() ){
 					%>
 				            <li class="list-group-item <%=j.isCurrent()?"current":"" %>">
+				            <% if( j.isActif(actualMonth)) {%>
+				            <h4><span class="label label-primary"><%=j.toString() %></span></h4>
+				            <% } else { %>
 				            <h4><span class="label label-default"><%=j.toString() %></span></h4>
-				            	<select name="tarif_<%=helper.getId(j) %>">
+				            <%} %>
+				            	<select class="<%=!j.getAller().equals("-")?"opt-ok":"" %>" name="tarif_<%=helper.getId(j) %>">
 				            		<% 
 				            		for( Tarification t : tarifs ){
 				            			%>
