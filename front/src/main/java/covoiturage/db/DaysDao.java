@@ -18,7 +18,7 @@ public class DaysDao {
 	private MongoDatabase database;
 
 	public DaysDao() {
-		mongoClient = new MongoClient("localhost", 27017);
+		mongoClient = MongoClientFactory.getClient();
 		database = mongoClient.getDatabase("covoiturage");
 	}
 

@@ -18,7 +18,7 @@ public class TarifsDao {
 	private MongoDatabase database;
 
 	public TarifsDao() {
-		mongoClient = new MongoClient("localhost", 27017);
+		mongoClient = MongoClientFactory.getClient();
 		database = mongoClient.getDatabase("covoiturage");
 	}
 
@@ -52,8 +52,8 @@ public class TarifsDao {
 	public void close() {
 		mongoClient.close();
 	}
-	
-	public void drop(){
+
+	public void drop() {
 		database.getCollection("tarifs").drop();
 	}
 }
